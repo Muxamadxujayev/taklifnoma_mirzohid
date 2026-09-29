@@ -8,27 +8,30 @@
 </head>
 <body>
 
-  <div id="kirish" class="kirish">
-    <button id="ochishBtn" class="ochish-btn">Taklifnomani ochish</button>
-  </div>
-
   <div class="sahifa">
-    <img src="taklifnoma obrazes.png" alt="To'y taklifnomasi" class="taklifnoma-rasm">
+    <img src="taklifnoma-obrazes.png" alt="To'y taklifnomasi" class="taklifnoma-rasm">
   </div>
 
   <audio id="musiqa" loop>
-    <source src="6dfd366b-8b94-4e71-a729-cc97b125a990.mp3" type="audio/mpeg">
+    <source src="musiqa.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    const kirish = document.getElementById('kirish');
     const musiqa = document.getElementById('musiqa');
-    document.getElementById('ochishBtn').addEventListener('click', () => {
-      musiqa.volume = 0.5;
-      musiqa.play();
-      kirish.classList.add('yopiq');
-      setTimeout(() => kirish.style.display = 'none', 600);
-    });
+
+    // Ekranning istalgan joyiga ilk marta tegilsa — musiqa boshlanadi
+    function qoshiqBoshla() {
+      if (musiqa.paused) {
+        musiqa.volume = 0.5;
+        musiqa.play().catch(() => {});
+      }
+    }
+
+    // Tegish, bosish, klaviatura — hammasi hisobga olinadi
+    document.body.addEventListener('click', qoshiqBoshla, { once: true });
+    document.body.addEventListener('touchstart', qoshiqBoshla, { once: true });
+    document.body.addEventListener('scroll', qoshiqBoshla, { once: true });
+    document.body.addEventListener('keydown', qoshiqBoshla, { once: true });
   </script>
 </body>
 </html>
