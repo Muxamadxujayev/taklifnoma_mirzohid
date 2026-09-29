@@ -9,29 +9,34 @@
 <body>
 
   <div class="sahifa">
-    <img src="taklifnoma-obrazes.png" alt="To'y taklifnomasi" class="taklifnoma-rasm">
+    <img src="taklifnoma obrazes.png" alt="To'y taklifnomasi" class="taklifnoma-rasm">
   </div>
 
   <audio id="musiqa" loop>
-    <source src="musiqa.mp3" type="audio/mpeg">
+    <source src="6dfd366b-8b94-4e71-a729-cc97b125a990.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    const musiqa = document.getElementById('musiqa');
+  const musiqa = document.getElementById('musiqa');
+  musiqa.volume = 0.5;
 
-    // Ekranning istalgan joyiga ilk marta tegilsa — musiqa boshlanadi
-    function qoshiqBoshla() {
-      if (musiqa.paused) {
-        musiqa.volume = 0.5;
-        musiqa.play().catch(() => {});
-      }
+  let oxirgiTegish = 0;
+
+  function qoshiqAlmashtir() {
+    const hozir = Date.now();
+    // 300 ms ichida ikkinchi tegish bo'lsa — e'tiborsiz qoldiriladi
+    if (hozir - oxirgiTegish < 300) return;
+    oxirgiTegish = hozir;
+
+    if (musiqa.paused) {
+      musiqa.play().catch(() => {});
+    } else {
+      musiqa.pause();
     }
+  }
 
-    // Tegish, bosish, klaviatura — hammasi hisobga olinadi
-    document.body.addEventListener('click', qoshiqBoshla, { once: true });
-    document.body.addEventListener('touchstart', qoshiqBoshla, { once: true });
-    document.body.addEventListener('scroll', qoshiqBoshla, { once: true });
-    document.body.addEventListener('keydown', qoshiqBoshla, { once: true });
+  document.body.addEventListener('click', qoshiqAlmashtir);
+  document.body.addEventListener('touchstart', qoshiqAlmashtir);
   </script>
 </body>
 </html>
