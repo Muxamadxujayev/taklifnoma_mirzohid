@@ -1,0 +1,43 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #f2ece1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Rasm butun ekranga sig'adi, nisbati saqlanadi */
+.sahifa {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.taklifnoma-rasm {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: 100vh;          /* balandlikni to'ldiradi */
+  object-fit: contain;    /* nisbat saqlanadi, kesilmaydi */
+  display: block;
+}
+
+/* Ochish ekrani */
+.kirish {
+  position: fixed; inset: 0; z-index: 10;
+  display: flex; justify-content: center; align-items: center;
+  background: #f2ece1;
+  transition: opacity .6s ease;
+}
+.kirish.yopiq { opacity: 0; pointer-events: none; }
+.ochish-btn {
+  font-family: Georgia, serif;
+  font-size: 1.2rem; letter-spacing: 2px;
+  padding: 14px 32px; cursor: pointer;
+  color: #8a6a2f; background: transparent;
+  border: 1px solid #c8a95e; border-radius: 40px;
+}
